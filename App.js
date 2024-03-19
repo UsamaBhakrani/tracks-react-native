@@ -16,7 +16,11 @@ const Tab = createBottomTabNavigator();
 function LoginFlow() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Signup"
+        component={SignupScreen}
+      />
       <Stack.Screen name="Signin" component={SigninScreen} />
     </Stack.Navigator>
   );
@@ -25,10 +29,7 @@ function LoginFlow() {
 function TrackListFlow() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="TrackList"
-        component={TrackListScreen}
-      />
+      <Stack.Screen name="TrackList" component={TrackListScreen} />
       <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
     </Stack.Navigator>
   );
