@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-const SignupScreen = () => {
+const SignupScreen = ({ navigation: { navigate } }) => {
   return (
-    <View>
+    <>
       <Text>SignupScreen</Text>
-    </View>
+      <Button title="Go to Signin" onPress={() => navigate("Signin")} />
+      <Button title="Go to Main Flow" onPress={() => navigate("MainFlow")} />
+    </>
   );
 };
 
