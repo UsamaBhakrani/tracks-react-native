@@ -9,6 +9,7 @@ import {
   TrackDetailScreen,
   TrackListScreen,
 } from "./src/screens";
+import { Provider as AuthProvider } from "./src/reducers/authRedcuer";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,18 +52,20 @@ function MainFlow() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="LoginFlow"
-          component={LoginFlow}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MainFlow"
-          component={MainFlow}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      <AuthProvider>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="LoginFlow"
+            component={LoginFlow}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MainFlow"
+            component={MainFlow}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </AuthProvider>
     </NavigationContainer>
   );
 }
