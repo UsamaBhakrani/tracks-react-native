@@ -1,0 +1,5 @@
+export const SIGNUP = "SIGNUP";
+export const SIGNIN = "SIGNIN";
+export const ISAUTHENTICATED = "ISAUTHENTICATED";
+export const ISAUTHENTICATEDERROR = "ISAUTHENTICATEDERROR";
+export const SIGNOUT = "SIGNOUT";

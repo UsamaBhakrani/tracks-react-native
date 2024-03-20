@@ -9,7 +9,7 @@ import {
   TrackDetailScreen,
   TrackListScreen,
 } from "./src/screens";
-import { Provider as AuthProvider } from "./src/reducers/authRedcuer";
+import { Provider as AuthProvider } from "./src/context/AuthContext";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
