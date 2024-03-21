@@ -1,49 +1,33 @@
-import { StyleSheet, View } from "react-native";
-import { Text, Input, Button } from "@rneui/themed";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { Text } from "@rneui/themed";
 import Spacer from "../components/Spacer";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Context as AuthContext } from "../context/AuthContext";
+import AuthForm from "../components/AuthForm";
 
 const SignupScreen = ({ navigation: { navigate } }) => {
   const { state, signUp } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   return (
     <View style={styles.container}>
-      <Spacer>
-        <Text h3>Sign up for Tracker</Text>
-      </Spacer>
-      <Input
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        autoCorrect={false}
+      <AuthForm
+        headerText="Sign Up For Tracker"
+        errorMessage={state.errorMessage}
+        submitText="Sign Up"
+        onSubmit={(email, password) => {
+          signUp({ email, password });
+          if (state.token) {
+            navigate("MainFlow");
+          }
+        }}
       />
-      <Spacer />
-      <Input
-        secureTextEntry
-        label="Password"
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      {state.errorMessage && (
-        <Text style={styles.error}>{state.errorMessage}</Text>
-      )}
-      <Spacer>
-        <Button
-          title="Signup"
-          onPress={() => {
-            signUp({ email, password });
-            if (state.token) {
-              navigate("MainFlow");
-            }
-          }}
-        />
-      </Spacer>
+      <TouchableOpacity onPress={() => navigate("Signin")}>
+        <Spacer>
+          <Text style={styles.link}>
+            Already Have an Account? Sign In Instead
+          </Text>
+        </Spacer>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -54,10 +38,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 100,
   },
-  error: {
-    marginLeft: 40,
-    fontSize: 18,
-    color: "red",
+  link: {
+    color: "dodgerblue",
+    fontSize: 19,
   },
 });
 
