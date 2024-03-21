@@ -12,11 +12,13 @@ const authReducer = (state, action) => {
       ...state,
       errorMessage: action.payload,
     };
-  }if(action.type === SIGNUP){
+  }
+  if (action.type === SIGNUP) {
     return {
-        ...state,
-        
-    }
+      ...state,
+      token: action.payload,
+      errorMessage: "",
+    };
   }
   return state;
 };
