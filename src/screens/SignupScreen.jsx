@@ -9,8 +9,6 @@ const SignupScreen = ({ navigation: { navigate } }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(state.errorMessage);
-
   return (
     <View style={styles.container}>
       <Spacer>
@@ -36,7 +34,15 @@ const SignupScreen = ({ navigation: { navigate } }) => {
         <Text style={styles.error}>{state.errorMessage}</Text>
       )}
       <Spacer>
-        <Button title="Signup" onPress={() => signUp({ email, password })} />
+        <Button
+          title="Signup"
+          onPress={() => {
+            signUp({ email, password });
+            if (state.token) {
+              navigate("MainFlow");
+            }
+          }}
+        />
       </Spacer>
     </View>
   );
