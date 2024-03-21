@@ -1,11 +1,16 @@
 import { StyleSheet, View } from "react-native";
 import { Text, Input, Button } from "@rneui/themed";
 import Spacer from "../components/Spacer";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context as AuthContext } from "../context/AuthContext";
 
 const SignupScreen = ({ navigation: { navigate } }) => {
+  const { state, signUp } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  console.log(state.errorMessage);
+
   return (
     <View style={styles.container}>
       <Spacer>
@@ -27,8 +32,11 @@ const SignupScreen = ({ navigation: { navigate } }) => {
         autoCapitalize="none"
         autoCorrect={false}
       />
+      {state.errorMessage && (
+        <Text style={styles.error}>{state.errorMessage}</Text>
+      )}
       <Spacer>
-        <Button title="Signup" />
+        <Button title="Signup" onPress={() => signUp({ email, password })} />
       </Spacer>
     </View>
   );
@@ -39,6 +47,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginBottom: 100,
+  },
+  error: {
+    marginLeft: 40,
+    fontSize: 18,
+    color: "red",
   },
 });
 
