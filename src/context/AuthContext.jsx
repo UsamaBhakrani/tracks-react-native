@@ -1,7 +1,7 @@
 import authReducer from "../reducers/authReducer";
 import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
-import { ISAUTHENTICATEDERROR, SIGNUP } from "../actions";
+import { ISAUTHENTICATEDERROR, SIGNIN, SIGNUP } from "../actions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,7 +11,6 @@ const signUp = (dispatch) => {
     try {
       const response = await trackerApi.post("/signup", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
-      console.log(props);
       navigate("MainFlow");
       dispatch({ type: SIGNUP, payload: response.data.token });
     } catch (error) {
@@ -24,7 +23,20 @@ const signUp = (dispatch) => {
 };
 
 const signIn = (dispatch) => {
-  return ({ email, password }) => {};
+  return async ({ email, password }) => {
+    try {
+      const response = await trackerApi.post("/signin", { email, password });
+      await AsyncStorage.setItem("token", response.data.token);
+      navigate("MainFlow");
+      console.log(response.data.token);
+      dispatch({ type: SIGNIN, payload: response.data.token });
+    } catch (error) {
+      dispatch({
+        type: ISAUTHENTICATEDERROR,
+        payload: "Something Went Wrong with Sign In",
+      });
+    }
+  };
 };
 
 const signOut = (dispatch) => {

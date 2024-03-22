@@ -20,6 +20,13 @@ const authReducer = (state, action) => {
       errorMessage: "",
     };
   }
+  if (action.type === SIGNIN) {
+    return {
+      ...state,
+      token: action.payload,
+      errorMessage: "",
+    };
+  }
   return state;
 };
 
