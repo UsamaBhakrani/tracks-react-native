@@ -5,7 +5,7 @@ import { useContext } from "react";
 import NavLink from "../components/NavLink";
 
 const SigninScreen = ({ navigation: { navigate } }) => {
-  const { state, signIn } = useContext(AuthContext);
+  const { state, signIn, clearError } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <AuthForm
@@ -16,7 +16,10 @@ const SigninScreen = ({ navigation: { navigate } }) => {
       />
       <NavLink
         title="Dont Have an Account? Sign Up Instead"
-        link={() => navigate("Signup")}
+        link={() => {
+          navigate("Signup");
+          clearError();
+        }}
       />
     </View>
   );

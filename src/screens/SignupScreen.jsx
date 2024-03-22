@@ -4,9 +4,8 @@ import { Context as AuthContext } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 
-
 const SignupScreen = ({ navigation: { navigate } }) => {
-  const { state, signUp } = useContext(AuthContext);
+  const { state, signUp, clearError } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <AuthForm
@@ -17,7 +16,10 @@ const SignupScreen = ({ navigation: { navigate } }) => {
       />
       <NavLink
         title="Already Have an Account? Sign In Instead"
-        link={() => navigate("Signin")}
+        link={() => {
+          navigate("Signin");
+          clearError();
+        }}
       />
     </View>
   );

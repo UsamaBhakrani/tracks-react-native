@@ -4,6 +4,7 @@ import {
   ISAUTHENTICATEDERROR,
   SIGNOUT,
   SIGNUP,
+  CLEARERRORMESSAGE,
 } from "../actions";
 
 const authReducer = (state, action) => {
@@ -24,6 +25,12 @@ const authReducer = (state, action) => {
     return {
       ...state,
       token: action.payload,
+      errorMessage: "",
+    };
+  }
+  if (action.type === CLEARERRORMESSAGE) {
+    return {
+      ...state,
       errorMessage: "",
     };
   }
