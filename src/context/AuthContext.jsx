@@ -5,6 +5,7 @@ import {
   CLEARERRORMESSAGE,
   ISAUTHENTICATEDERROR,
   SIGNIN,
+  SIGNOUT,
   SIGNUP,
 } from "../actions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -45,7 +46,12 @@ const signIn = (dispatch) => {
 };
 
 const signOut = (dispatch) => {
-  return () => {};
+  const { navigate } = useNavigation();
+  return async () => {
+    await AsyncStorage.removeItem("token");
+    dispatch({ type: SIGNOUT });
+    navigate("Signup");
+  };
 };
 
 const clearError = (dispatch) => {

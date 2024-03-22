@@ -34,6 +34,13 @@ const authReducer = (state, action) => {
       errorMessage: "",
     };
   }
+  if (action.type === SIGNOUT) {
+    return {
+      ...state,
+      token: null,
+      errorMessage: "",
+    };
+  }
   return state;
 };
 
