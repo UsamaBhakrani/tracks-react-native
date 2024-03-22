@@ -1,13 +1,12 @@
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Text } from "@rneui/themed";
-import Spacer from "../components/Spacer";
+import { StyleSheet, View } from "react-native";
 import { useContext } from "react";
 import { Context as AuthContext } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
+import NavLink from "../components/NavLink";
+
 
 const SignupScreen = ({ navigation: { navigate } }) => {
   const { state, signUp } = useContext(AuthContext);
-
   return (
     <View style={styles.container}>
       <AuthForm
@@ -16,13 +15,10 @@ const SignupScreen = ({ navigation: { navigate } }) => {
         submitText="Sign Up"
         onSubmit={signUp}
       />
-      <TouchableOpacity onPress={() => navigate("Signin")}>
-        <Spacer>
-          <Text style={styles.link}>
-            Already Have an Account? Sign In
-          </Text>
-        </Spacer>
-      </TouchableOpacity>
+      <NavLink
+        title="Already Have an Account? Sign In Instead"
+        link={() => navigate("Signin")}
+      />
     </View>
   );
 };
