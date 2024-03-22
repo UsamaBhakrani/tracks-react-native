@@ -14,12 +14,12 @@ const SignupScreen = ({ navigation: { navigate } }) => {
         headerText="Sign Up For Tracker"
         errorMessage={state.errorMessage}
         submitText="Sign Up"
-        onSubmit={({ email, password }) => signUp({ email, password })}
+        onSubmit={signUp}
       />
       <TouchableOpacity onPress={() => navigate("Signin")}>
         <Spacer>
           <Text style={styles.link}>
-            Already Have an Account? Sign In Instead
+            Already Have an Account? Sign In
           </Text>
         </Spacer>
       </TouchableOpacity>

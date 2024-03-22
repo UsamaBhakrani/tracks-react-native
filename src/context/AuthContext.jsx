@@ -6,13 +6,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
 const signUp = (dispatch) => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   return async ({ email, password }) => {
     try {
       const response = await trackerApi.post("/signup", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
-      console.log(response.data.token);
-      navigation.navigate("MainFlow");
+      console.log(props);
+      navigate("MainFlow");
       dispatch({ type: SIGNUP, payload: response.data.token });
     } catch (error) {
       dispatch({

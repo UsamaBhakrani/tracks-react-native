@@ -22,7 +22,11 @@ function LoginFlow() {
         name="Signup"
         component={SignupScreen}
       />
-      <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Signin"
+        component={SigninScreen}
+      />
     </Stack.Navigator>
   );
 }
