@@ -10,13 +10,19 @@ import {
   TrackListScreen,
 } from "./src/screens";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function LoginFlow() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator >
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Resolve"
+        component={ResolveAuthScreen}
+      />
       <Stack.Screen
         options={{ headerShown: false }}
         name="Signup"

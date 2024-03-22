@@ -33,11 +33,9 @@ const signIn = (dispatch) => {
     try {
       const response = await trackerApi.post("/signin", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
-      console.log(response.data);
       dispatch({ type: SIGNIN, payload: response.data.token });
       navigate("MainFlow");
     } catch (error) {
-      console.log(error);
       dispatch({
         type: ISAUTHENTICATEDERROR,
         payload: "Something Went Wrong with Sign In",
@@ -56,8 +54,21 @@ const clearError = (dispatch) => {
   };
 };
 
+const tryLocalSignIn = (dispatch) => {
+  const { navigate } = useNavigation();
+  return async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      dispatch({ type: SIGNIN, payload: token });
+      navigate("MainFlow");
+    } else {
+      navigate("Signup");
+    }
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signIn, signOut, signUp, clearError },
+  { signIn, signOut, signUp, clearError, tryLocalSignIn },
   { token: null, errorMessage: "" }
 );
