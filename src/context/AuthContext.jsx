@@ -3,12 +3,16 @@ import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 import { ISAUTHENTICATEDERROR, SIGNUP } from "../actions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const signUp = (dispatch) => {
+  const navigation = useNavigation();
   return async ({ email, password }) => {
     try {
       const response = await trackerApi.post("/signup", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
+      console.log(response.data.token);
+      navigation.navigate("MainFlow");
       dispatch({ type: SIGNUP, payload: response.data.token });
     } catch (error) {
       dispatch({

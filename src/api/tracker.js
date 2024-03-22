@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://6f91-39-51-69-130.ngrok-free.app",
+  baseURL: "https://0e6b-182-184-118-186.ngrok-free.app",
 });

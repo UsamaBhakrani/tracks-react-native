@@ -14,12 +14,7 @@ const SignupScreen = ({ navigation: { navigate } }) => {
         headerText="Sign Up For Tracker"
         errorMessage={state.errorMessage}
         submitText="Sign Up"
-        onSubmit={(email, password) => {
-          signUp({ email, password });
-          if (state.token) {
-            navigate("MainFlow");
-          }
-        }}
+        onSubmit={({ email, password }) => signUp({ email, password })}
       />
       <TouchableOpacity onPress={() => navigate("Signin")}>
         <Spacer>
