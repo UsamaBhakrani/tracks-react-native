@@ -11,6 +11,7 @@ import {
 } from "./src/screens";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
+import { Provider as LocationProvider } from "./src/context/LocationContext";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,20 +79,22 @@ function MainFlow() {
 export default function App() {
   return (
     <NavigationContainer>
-      <AuthProvider>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="LoginFlow"
-            component={LoginFlow}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="MainFlow"
-            component={MainFlow}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </AuthProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="LoginFlow"
+              component={LoginFlow}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="MainFlow"
+              component={MainFlow}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </AuthProvider>
+      </LocationProvider>
     </NavigationContainer>
   );
 }
