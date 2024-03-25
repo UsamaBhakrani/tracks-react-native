@@ -2,8 +2,13 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "@rneui/themed";
 import Map from "../components/Map";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { requestForegroundPermissionsAsync } from "expo-location";
+import {
+  requestForegroundPermissionsAsync,
+  watchPositionAsync,
+  Accuracy,
+} from "expo-location";
 import { useEffect, useState } from "react";
+import "../_mockLocations";
 
 const TrackCreateScreen = () => {
   const [err, setErr] = useState(null);
@@ -13,6 +18,16 @@ const TrackCreateScreen = () => {
   const startWatching = async () => {
     try {
       await requestForegroundPermissionsAsync();
+      await watchPositionAsync(
+        {
+          accuracy: Accuracy.BestForNavigation,
+          timeInterval: 100000,
+          distanceInterval: 10,
+        },
+        (location) => {
+          console.log(location);
+        }
+      );
     } catch (error) {
       setErr(error);
     }
