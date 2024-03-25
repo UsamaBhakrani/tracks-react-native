@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 
 function LoginFlow() {
   return (
-    <Stack.Navigator >
+    <Stack.Navigator>
       <Stack.Screen
         options={{ headerShown: false }}
         name="Resolve"
@@ -40,8 +40,16 @@ function LoginFlow() {
 function TrackListFlow() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="TrackList" component={TrackListScreen} />
-      <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="TrackList"
+        component={TrackListScreen}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="TrackDetail"
+        component={TrackDetailScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -53,8 +61,16 @@ function MainFlow() {
         name="TrackListFlow"
         component={TrackListFlow}
       />
-      <Tab.Screen name="CreateTrack" component={TrackCreateScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="CreateTrack"
+        component={TrackCreateScreen}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="Account"
+        component={AccountScreen}
+      />
     </Tab.Navigator>
   );
 }
