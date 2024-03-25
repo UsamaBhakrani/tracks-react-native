@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 const TrackDetailScreen = () => {
   return (
-    <View>
+    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
       <Text>TrackDetailScreen</Text>
     </View>
   );
