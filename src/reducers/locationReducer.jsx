@@ -3,6 +3,7 @@ import {
   ADDLOCATION,
   STARTRECORDING,
   STOPRECORDING,
+  ADDTRACKNAME,
 } from "../actions";
 
 const locationReducer = (state, action) => {
@@ -16,10 +17,10 @@ const locationReducer = (state, action) => {
     };
   }
   if (action.type === STARTRECORDING) {
-    return { ...state, recording: true };
+    return { ...state, isRecording: true };
   }
   if (action.type === STOPRECORDING) {
-    return { ...state, recording: false };
+    return { ...state, isRecording: false };
   }
   if (action.type === ADDTRACKNAME) {
     return { ...state, name: action.payload };
