@@ -7,10 +7,12 @@ import {
   watchPositionAsync,
   Accuracy,
 } from "expo-location";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../_mockLocations";
-
+import { Context as LocationContext } from "../context/LocationContext";
 const TrackCreateScreen = () => {
+  const { startRecording, stopRecording, addLocation } =
+    useContext(LocationContext);
   const [err, setErr] = useState(null);
 
   const insets = useSafeAreaInsets();
@@ -25,7 +27,7 @@ const TrackCreateScreen = () => {
           distanceInterval: 10,
         },
         (location) => {
-          console.log(location);
+          addLocation(location);
         }
       );
     } catch (error) {
