@@ -1,3 +1,4 @@
+import "../_mockLocations";
 import { StyleSheet, View } from "react-native";
 import { Text } from "@rneui/themed";
 import Map from "../components/Map";
@@ -8,8 +9,8 @@ import {
   Accuracy,
 } from "expo-location";
 import { useContext, useEffect, useState } from "react";
-import "../_mockLocations";
 import { Context as LocationContext } from "../context/LocationContext";
+
 const TrackCreateScreen = () => {
   const { startRecording, stopRecording, addLocation } =
     useContext(LocationContext);

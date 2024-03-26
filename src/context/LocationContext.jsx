@@ -1,5 +1,6 @@
 import createDataContext from "./createDataContext";
 import locationReducer from "../reducers/locationReducer";
+import { ADDCURRENTLOCATION } from "../actions";
 
 const startRecording = (dispatch) => {
   return () => {};
