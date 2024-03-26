@@ -7,6 +7,8 @@ import { useContext } from "react";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
 import { useIsFocused } from "@react-navigation/native";
+import TrackForm from "../components/TrackForm";
+import Spacer from "../components/Spacer";
 
 const TrackCreateScreen = () => {
   const { addLocation } = useContext(LocationContext);
@@ -21,6 +23,9 @@ const TrackCreateScreen = () => {
       {err && (
         <Text style={{ color: "red" }}>please enable location services</Text>
       )}
+      <Spacer>
+        <TrackForm />
+      </Spacer>
     </View>
   );
 };

@@ -1,18 +1,12 @@
-import { View, StyleSheet, Text } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Button, Input, Text } from "@rneui/themed";
 
 const TrackForm = () => {
-  const insets = useSafeAreaInsets();
-
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <Text>I am a TrackForm</Text>
-    </View>
+    <>
+      <Input placeholder="Enter Name" />
+      <Button title="Start Recording" />
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {},
-});
 
 export default TrackForm;
