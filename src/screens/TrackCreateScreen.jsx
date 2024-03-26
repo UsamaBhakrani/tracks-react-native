@@ -6,13 +6,14 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useContext } from "react";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
+import { useIsFocused } from "@react-navigation/native";
 
-const TrackCreateScreen = ({ navigation: { isFocused } }) => {
+const TrackCreateScreen = () => {
   const { addLocation } = useContext(LocationContext);
-  const [err] = useLocation(addLocation);
+  const tracking = useIsFocused();
+  const [err] = useLocation(tracking, addLocation);
   const insets = useSafeAreaInsets();
 
-  // console.log(isFocused())
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
       <Text h2>Create a Track</Text>
