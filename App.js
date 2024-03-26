@@ -66,6 +66,7 @@ function MainFlow() {
         options={{ headerShown: false }}
         name="CreateTrack"
         component={TrackCreateScreen}
+        S
       />
       <Tab.Screen
         options={{ headerShown: false }}

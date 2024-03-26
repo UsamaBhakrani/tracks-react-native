@@ -3,43 +3,16 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "@rneui/themed";
 import Map from "../components/Map";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {
-  requestForegroundPermissionsAsync,
-  watchPositionAsync,
-  Accuracy,
-} from "expo-location";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Context as LocationContext } from "../context/LocationContext";
+import useLocation from "../hooks/useLocation";
 
-const TrackCreateScreen = () => {
-  const { startRecording, stopRecording, addLocation } =
-    useContext(LocationContext);
-  const [err, setErr] = useState(null);
-
+const TrackCreateScreen = ({ navigation: { isFocused } }) => {
+  const { addLocation } = useContext(LocationContext);
+  const [err] = useLocation(addLocation);
   const insets = useSafeAreaInsets();
 
-  const startWatching = async () => {
-    try {
-      await requestForegroundPermissionsAsync();
-      await watchPositionAsync(
-        {
-          accuracy: Accuracy.BestForNavigation,
-          timeInterval: 100000,
-          distanceInterval: 10,
-        },
-        (location) => {
-          addLocation(location);
-        }
-      );
-    } catch (error) {
-      setErr(error);
-    }
-  };
-
-  useEffect(() => {
-    startWatching();
-  }, []);
-
+  // console.log(isFocused())
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
       <Text h2>Create a Track</Text>
