@@ -11,9 +11,11 @@ import TrackForm from "../components/TrackForm";
 import Spacer from "../components/Spacer";
 
 const TrackCreateScreen = () => {
-  const { addLocation } = useContext(LocationContext);
+  const { state, addLocation } = useContext(LocationContext);
   const tracking = useIsFocused();
-  const [err] = useLocation(tracking, addLocation);
+  const [err] = useLocation(tracking, (location) =>
+    addLocation(location, state.isRecording)
+  );
   const insets = useSafeAreaInsets();
 
   return (

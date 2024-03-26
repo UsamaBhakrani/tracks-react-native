@@ -1,23 +1,42 @@
 import createDataContext from "./createDataContext";
 import locationReducer from "../reducers/locationReducer";
-import { ADDCURRENTLOCATION } from "../actions";
+import {
+  ADDCURRENTLOCATION,
+  ADDLOCATION,
+  ADDTRACKNAME,
+  STARTRECORDING,
+  STOPRECORDING,
+} from "../actions";
 
 const startRecording = (dispatch) => {
-  return () => {};
+  return () => {
+    dispatch({ type: STARTRECORDING });
+  };
 };
 
 const stopRecording = (dispatch) => {
-  return () => {};
+  return () => {
+    dispatch({ type: STOPRECORDING });
+  };
 };
 
 const addLocation = (dispatch) => {
-  return (location) => {
+  return (location, recording) => {
     dispatch({ type: ADDCURRENTLOCATION, payload: location });
+    if (recording) {
+      dispatch({ type: ADDLOCATION, payload: location });
+    }
+  };
+};
+
+const changeName = (dispatch) => {
+  return (name) => {
+    dispatch({ type: ADDTRACKNAME, payload: name });
   };
 };
 
 export const { Context, Provider } = createDataContext(
   locationReducer,
-  { startRecording, stopRecording, addLocation },
-  { isRecording: false, locations: [], currentLocation: null }
+  { startRecording, stopRecording, addLocation, changeName },
+  { isRecording: false, locations: [], currentLocation: null, name: "" }
 );
