@@ -19,7 +19,7 @@ const TrackCreateScreen = () => {
     },
     [state.isRecording]
   );
-  const [err] = useLocation(tracking, callback);
+  const [err] = useLocation(tracking || state.isRecording, callback);
   const insets = useSafeAreaInsets();
 
   console.log(state.locations.length);
