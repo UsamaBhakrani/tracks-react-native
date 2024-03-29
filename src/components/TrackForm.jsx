@@ -1,6 +1,7 @@
 import { Button, Input, Text } from "@rneui/themed";
 import { useContext } from "react";
 import { Context as LocationContext } from "../context/LocationContext";
+import Spacer from "./Spacer";
 
 const TrackForm = () => {
   const {
@@ -14,11 +15,18 @@ const TrackForm = () => {
   return (
     <>
       <Input placeholder="Enter Name" onChangeText={changeName} value={name} />
-      {isRecording ? (
-        <Button title="Stop" onPress={stopRecording} />
-      ) : (
-        <Button title="Start Recording" onPress={startRecording} />
-      )}
+      <Spacer>
+        {isRecording ? (
+          <Button title="Stop" onPress={stopRecording} />
+        ) : (
+          <Button title="Start Recording" onPress={startRecording} />
+        )}
+      </Spacer>
+      <Spacer>
+        {!isRecording && locations.length ? (
+          <Button title="Save Recording" />
+        ) : null}
+      </Spacer>
     </>
   );
 };
