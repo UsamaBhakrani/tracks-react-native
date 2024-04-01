@@ -6,6 +6,7 @@ import {
   ADDTRACKNAME,
   STARTRECORDING,
   STOPRECORDING,
+  RESET,
 } from "../actions";
 
 const startRecording = (dispatch) => {
@@ -35,8 +36,14 @@ const changeName = (dispatch) => {
   };
 };
 
+const reset = (dispatch) => {
+  return () => {
+    dispatch({ type: RESET });
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   locationReducer,
-  { startRecording, stopRecording, addLocation, changeName },
+  { startRecording, stopRecording, addLocation, changeName, reset },
   { isRecording: false, locations: [], currentLocation: null, name: "" }
 );

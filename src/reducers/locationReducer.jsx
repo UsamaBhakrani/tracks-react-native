@@ -4,6 +4,7 @@ import {
   STARTRECORDING,
   STOPRECORDING,
   ADDTRACKNAME,
+  RESET,
 } from "../actions";
 
 const locationReducer = (state, action) => {
@@ -24,6 +25,9 @@ const locationReducer = (state, action) => {
   }
   if (action.type === ADDTRACKNAME) {
     return { ...state, name: action.payload };
+  }
+  if (action.type === RESET) {
+    return { ...state, name: "", locations: [] };
   }
   return state;
 };
