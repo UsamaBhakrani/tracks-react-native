@@ -5,7 +5,9 @@ const fetchTracks = (dispatch) => {
   return () => {};
 };
 const createTrack = (dispatch) => {
-  return () => {};
+  return (name, locations) => {
+    console.log(name, locations)
+  };
 };
 
 export const { Context, Provider } = createDataContext(
