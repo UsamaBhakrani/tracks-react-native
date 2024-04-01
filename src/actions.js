@@ -14,3 +14,6 @@ export const STARTRECORDING = "STARTRECORDING";
 export const STOPRECORDING = "STOPRECORDING";
 export const ADDTRACKNAME = "ADDTRACKNAME";
 export const RESET = "RESET";
+
+// Tracks
+export const GETTRACKS = "GETTRACKS";

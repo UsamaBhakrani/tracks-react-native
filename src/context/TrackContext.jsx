@@ -1,9 +1,13 @@
 import trackReducer from "../reducers/trackReducer";
 import createDataContext from "./createDataContext";
 import tracker from "../api/tracker";
+import { GETTRACKS } from "../actions";
 
 const fetchTracks = (dispatch) => {
-  return () => {};
+  return async () => {
+    const response = await tracker.get("/tracks");
+    dispatch({ type: GETTRACKS, payload: response.data });
+  };
 };
 const createTrack = (dispatch) => {
   return async (name, locations) => {
