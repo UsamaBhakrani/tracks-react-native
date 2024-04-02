@@ -13,6 +13,9 @@ import { Provider as AuthProvider } from "./src/context/AuthContext";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { Provider as LocationProvider } from "./src/context/LocationContext";
 import { Provider as TrackProvider } from "./src/context/TrackContext";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -59,18 +62,34 @@ function MainFlow() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => {
+            return <Fontisto name="list-2" size={24} color="black" />;
+          },
+        }}
         name="TrackListFlow"
         component={TrackListFlow}
       />
       <Tab.Screen
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => {
+            return <MaterialIcons name="create" size={24} color="black" />;
+          },
+        }}
         name="CreateTrack"
         component={TrackCreateScreen}
-        S
       />
       <Tab.Screen
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: () => {
+            return (
+              <MaterialCommunityIcons name="account" size={24} color="black" />
+            );
+          },
+        }}
         name="Account"
         component={AccountScreen}
       />

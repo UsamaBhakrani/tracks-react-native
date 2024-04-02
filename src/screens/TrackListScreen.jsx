@@ -22,7 +22,6 @@ const TrackListScreen = ({ navigation: { navigate } }) => {
 
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <Text>TrackListScreen</Text>
       <FlatList
         data={state}
         keyExtractor={(item) => item._id}
